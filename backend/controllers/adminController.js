@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Department = require('../models/Department');
 const Complaint = require('../models/Complaint');
+const bcrypt = require('bcryptjs');
 
 // @desc    Get all departments with stats
 // @route   GET /api/admin/departments
@@ -87,10 +88,74 @@ const getDepartments = async (req, res) => {
   }
 };
 
-// @desc    Create a new department
-// @route   POST /api/admin/departments
+// @desc    Create user accounts for existing departments
+// @route   POST /api/admin/departments/create-users
 // @access  Private/Admin
-// controllers/adminController.js - createDepartment function
+const createDepartmentUsers = async (req, res) => {
+  try {
+    console.log('Creating user accounts for existing departments...');
+
+    // Find all departments
+    const departments = await Department.find({});
+    const results = [];
+
+    for (const dept of departments) {
+      // Check if user account already exists
+      const existingUser = await User.findOne({ email: dept.email });
+
+      if (!existingUser) {
+        console.log(`📝 Creating user account for department: ${dept.name}`);
+
+        // Create user account (password hashing handled in User model pre-save hook)
+        const defaultPassword = 'password123'; // Default password for department accounts
+
+        const departmentUser = await User.create({
+          name: dept.name,
+          email: dept.email.toLowerCase(),
+          phone: dept.phone,
+          address: dept.address || 'Department Office',
+          password: defaultPassword,
+          role: 'department',
+          department: dept._id
+        });
+
+        // Update department with head reference
+        dept.head = departmentUser._id;
+        await dept.save();
+
+        results.push({
+          department: dept.name,
+          email: departmentUser.email,
+          password: defaultPassword,
+          status: 'created'
+        });
+
+        console.log(`✅ Created user account: ${departmentUser.email}`);
+      } else {
+        results.push({
+          department: dept.name,
+          email: dept.email,
+          status: 'already_exists'
+        });
+        console.log(`ℹ️ User account already exists for: ${dept.name}`);
+      }
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Department user creation process completed',
+      results
+    });
+
+  } catch (error) {
+    console.error('❌ Error creating department users:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error creating department users',
+      error: error.message
+    });
+  }
+};
 const createDepartment = async (req, res) => {
   try {
     console.log('Creating department request:', req.body);
@@ -144,12 +209,37 @@ const createDepartment = async (req, res) => {
       categories: Array.isArray(categories) ? categories : []
     });
 
+    // Create a user account for the department
+    const salt = await bcrypt.genSalt(10);
+    const defaultPassword = 'password123'; // Default password for department accounts
+    const hashedPassword = await bcrypt.hash(defaultPassword, salt);
+
+    const departmentUser = await User.create({
+      name: trimmedName,
+      email: trimmedEmail.toLowerCase(),
+      phone: trimmedPhone,
+      address: trimmedAddress || 'Department Office',
+      password: hashedPassword,
+      role: 'department',
+      department: department._id
+    });
+
+    // Update department with head reference
+    department.head = departmentUser._id;
+    await department.save();
+
     console.log(`✅ Department created: ${department.name} (${department._id})`);
+    console.log(`✅ Department user created: ${departmentUser.email} (password: ${defaultPassword})`);
     
     res.status(201).json({
       success: true,
       message: 'Department created successfully',
-      department
+      department,
+      departmentUser: {
+        email: departmentUser.email,
+        password: defaultPassword,
+        role: departmentUser.role
+      }
     });
   } catch (error) {
     console.error('❌ Error in createDepartment:', error);
@@ -817,6 +907,7 @@ module.exports = {
   // Department management
   getDepartments,
   createDepartment,
+  createDepartmentUsers,
   updateDepartment,
   deleteDepartment,
   assignStaffToDepartment,

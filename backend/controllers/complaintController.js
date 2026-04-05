@@ -155,6 +155,11 @@ const getComplaintById = async (req, res) => {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
+    if (req.user.role === 'department' && 
+        complaint.department && complaint.department._id.toString() !== req.user.department.toString()) {
+      return res.status(403).json({ message: 'Not authorized' });
+    }
+
     res.json(complaint);
   } catch (error) {
     console.error(error);
@@ -254,52 +259,92 @@ const addComment = async (req, res) => {
   }
 };
 
-// @desc    Vote on complaint
-// @route   POST /api/complaints/:id/vote
-// @access  Private
-const voteComplaint = async (req, res) => {
+// @desc    Get all complaints (for citizens to view community complaints)
+// @route   GET /api/complaints/community/all
+// @access  Private/Citizen
+const getCommunityComplaints = async (req, res) => {
   try {
-    const { voteType } = req.body; // 'upvote' or 'downvote'
-    
+    const { status, category, sort, page = 1, limit = 10 } = req.query;
+
+    let query = { status: { $ne: 'Rejected' } }; // Don't show rejected complaints
+
+    // Apply filters
+    if (status) query.status = status;
+    if (category) query.category = category;
+
+    let sortOptions = { createdAt: -1 }; // Default sort by newest
+
+    if (sort === 'oldest') {
+      sortOptions = { createdAt: 1 };
+    } else if (sort === 'popular') {
+      sortOptions = { 'likes': -1, createdAt: -1 };
+    } else if (sort === 'most-commented') {
+      sortOptions = { 'comments': -1, createdAt: -1 };
+    }
+
+    const skip = (page - 1) * limit;
+
+    const complaints = await Complaint.find(query)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(parseInt(limit))
+      .populate('citizen', 'name')
+      .populate('department', 'name')
+      .populate('likes.user', 'name')
+      .populate('comments.user', 'name role')
+      .select('title description category location status priority createdAt likes comments citizen department images');
+
+    const total = await Complaint.countDocuments(query);
+
+    res.json({
+      complaints,
+      pagination: {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        total,
+        pages: Math.ceil(total / limit)
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// @desc    Like/Unlike complaint
+// @route   POST /api/complaints/:id/like
+// @access  Private
+const likeComplaint = async (req, res) => {
+  try {
     const complaint = await Complaint.findById(req.params.id);
-    
+
     if (!complaint) {
       return res.status(404).json({ message: 'Complaint not found' });
     }
 
-    // Check if user already voted
-    const hasUpvoted = complaint.upvotes.includes(req.user._id);
-    const hasDownvoted = complaint.downvotes.includes(req.user._id);
+    // Check if user already liked
+    const existingLike = complaint.likes.find(
+      like => like.user.toString() === req.user._id.toString()
+    );
 
-    if (voteType === 'upvote') {
-      if (hasUpvoted) {
-        // Remove upvote
-        complaint.upvotes.pull(req.user._id);
-      } else {
-        // Add upvote, remove downvote if exists
-        complaint.upvotes.push(req.user._id);
-        if (hasDownvoted) {
-          complaint.downvotes.pull(req.user._id);
-        }
-      }
-    } else if (voteType === 'downvote') {
-      if (hasDownvoted) {
-        // Remove downvote
-        complaint.downvotes.pull(req.user._id);
-      } else {
-        // Add downvote, remove upvote if exists
-        complaint.downvotes.push(req.user._id);
-        if (hasUpvoted) {
-          complaint.upvotes.pull(req.user._id);
-        }
-      }
+    if (existingLike) {
+      // Unlike: remove the like
+      complaint.likes = complaint.likes.filter(
+        like => like.user.toString() !== req.user._id.toString()
+      );
+    } else {
+      // Like: add the like
+      complaint.likes.push({
+        user: req.user._id,
+        createdAt: Date.now()
+      });
     }
 
     await complaint.save();
-    
+
     res.json({
-      upvotes: complaint.upvotes.length,
-      downvotes: complaint.downvotes.length
+      likesCount: complaint.likes.length,
+      isLiked: !existingLike
     });
   } catch (error) {
     console.error(error);
@@ -382,9 +427,10 @@ const getComplaintStats = async (req, res) => {
 module.exports = {
   createComplaint,
   getComplaints,
+  getCommunityComplaints,
   getComplaintById,
   updateComplaintStatus,
   addComment,
-  voteComplaint,
+  likeComplaint,
   getComplaintStats
 };

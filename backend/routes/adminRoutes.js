@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getDepartments,
   createDepartment,
+  createDepartmentUsers,
   updateDepartment,
   deleteDepartment,
   assignStaffToDepartment,
@@ -22,6 +23,8 @@ router.use(authorize('admin'));
 router.route('/departments')
   .get(getDepartments)
   .post(createDepartment);
+
+router.post('/departments/create-users', createDepartmentUsers);
 
 router.route('/departments/:id')
   .put(updateDepartment)

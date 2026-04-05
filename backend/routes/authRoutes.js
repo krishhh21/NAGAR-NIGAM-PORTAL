@@ -6,7 +6,9 @@ const {
   loginUser,
   getUserProfile,
   updateUserProfile,
-  getUsers
+  getUsers,
+  forgotPassword,
+  resetPassword
 } = require('../controllers/authController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 
@@ -24,9 +26,19 @@ const loginValidation = [
   body('password').notEmpty().withMessage('Password is required')
 ];
 
+const forgotPasswordValidation = [
+  body('email').isEmail().withMessage('Please include a valid email')
+];
+
+const resetPasswordValidation = [
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+];
+
 // Public routes
 router.post('/register', registerValidation, registerUser);
 router.post('/login', loginValidation, loginUser);
+router.post('/forgot-password', forgotPasswordValidation, forgotPassword);
+router.put('/reset-password/:resettoken', resetPasswordValidation, resetPassword);
 
 // Protected routes
 router.get('/profile', protect, getUserProfile);

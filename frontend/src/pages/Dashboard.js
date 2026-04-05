@@ -33,6 +33,8 @@ const translations = {
       quickNewDesc: 'Register a new complaint',
       quickMy: 'My Complaints',
       quickMyDesc: 'View all your complaints',
+      quickCommunity: 'Community',
+      quickCommunityDesc: 'View and engage with community complaints',
       quickStatus: 'Check Status',
       quickStatusDesc: 'Ongoing complaints',
       feature1: 'Register complaint',
@@ -108,6 +110,8 @@ const translations = {
       quickNewDesc: 'नई शिकायत दर्ज करें',
       quickMy: 'मेरी शिकायतें',
       quickMyDesc: 'अपनी सभी शिकायतें देखें',
+      quickCommunity: 'समुदाय',
+      quickCommunityDesc: 'समुदाय की शिकायतों को देखें और जुड़ें',
       quickStatus: 'स्थिति देखें',
       quickStatusDesc: 'चल रही शिकायतें',
       feature1: 'शिकायत दर्ज करें',
@@ -238,6 +242,14 @@ const Dashboard = () => {
         bgColor: 'bg-indigo-50',
         borderColor: 'border-indigo-200',
         textColor: 'text-indigo-600'
+      },
+      {
+        to: '/community',
+        labelKey: 'citizen.quickCommunity',
+        descKey: 'citizen.quickCommunityDesc',
+        bgColor: 'bg-purple-50',
+        borderColor: 'border-purple-200',
+        textColor: 'text-purple-600'
       },
       {
         to: '/complaints?status=In Progress',

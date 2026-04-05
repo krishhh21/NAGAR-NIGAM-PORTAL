@@ -70,10 +70,9 @@ const UserManagement = () => {
   const handleDeleteUser = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        // Note: You'll need to add a delete endpoint in backend
-        toast.error('Delete endpoint not implemented');
-        // await api.delete(`/admin/users/${userId}`);
-        // fetchUsers();
+        await api.delete(`/admin/users/${userId}`);
+        toast.success('User deleted successfully');
+        fetchUsers();
       } catch (error) {
         toast.error('Failed to delete user');
       }

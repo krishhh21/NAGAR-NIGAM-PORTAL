@@ -4,6 +4,9 @@ import { Toaster } from 'react-hot-toast';
 import UPGovHeader from './components/UPGovHeader';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import CommunityComplaints from './pages/CommunityComplaints';
 import Dashboard from './pages/Dashboard';
 import Complaints from './pages/Complaints';
 import ComplaintDetails from './pages/ComplaintDetails';
@@ -52,6 +55,17 @@ function App() {
             } />
             <Route path="/register" element={
               !user ? <Register /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/forgot-password" element={
+              !user ? <ForgotPassword /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/reset-password/:resettoken" element={
+              !user ? <ResetPassword /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/community" element={
+              <ProtectedRoute>
+                <CommunityComplaints />
+              </ProtectedRoute>
             } />
             <Route path="/dashboard" element={
               <ProtectedRoute>

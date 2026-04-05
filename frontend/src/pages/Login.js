@@ -173,7 +173,7 @@ const Login = () => {
                   <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">{t('remember')}</label>
                 </div>
                 <div className="text-sm">
-                  <button type="button" onClick={() => alert(t('forgotComingSoon'))} className="font-medium text-blue-600 hover:text-blue-500">{t('forgot')}</button>
+                  <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">{t('forgot')}</Link>
                 </div>
               </div>
 

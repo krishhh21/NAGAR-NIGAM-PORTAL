@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUser, FaBell, FaBars, FaTimes, FaHome, FaClipboardList, FaPlusCircle, FaChartBar, FaBuilding, FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaBell, FaBars, FaTimes, FaHome, FaClipboardList, FaPlusCircle, FaChartBar, FaBuilding, FaSignOutAlt, FaUsers } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -9,6 +9,7 @@ const translations = {
     title: 'Smart City Portal',
     dashboard: 'Dashboard',
     complaints: 'Complaints',
+    community: 'Community',
     newComplaint: 'New Complaint',
     adminDashboard: 'Admin Dashboard',
     departments: 'Departments',
@@ -20,6 +21,7 @@ const translations = {
     title: 'स्मार्ट सिटी पोर्टल',
     dashboard: 'डैशबोर्ड',
     complaints: 'शिकायतें',
+    community: 'समुदाय',
     newComplaint: 'नई शिकायत',
     adminDashboard: 'प्रशासन डैशबोर्ड',
     departments: 'विभाग',
@@ -45,6 +47,7 @@ const Navbar = () => {
   const navItems = [
     { to: '/dashboard', icon: <FaHome />, labelKey: 'dashboard', roles: ['citizen', 'admin', 'department'] },
     { to: '/complaints', icon: <FaClipboardList />, labelKey: 'complaints', roles: ['citizen', 'admin', 'department'] },
+    { to: '/community', icon: <FaUsers />, labelKey: 'community', roles: ['citizen', 'admin', 'department'] },
     { to: '/new-complaint', icon: <FaPlusCircle />, labelKey: 'newComplaint', roles: ['citizen'] },
     { to: '/admin', icon: <FaChartBar />, labelKey: 'adminDashboard', roles: ['admin'] },
     { to: '/admin/departments', icon: <FaBuilding />, labelKey: 'departments', roles: ['admin'] },

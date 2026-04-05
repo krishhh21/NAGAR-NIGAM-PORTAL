@@ -6,10 +6,11 @@ const router = express.Router();
 const {
   createComplaint,
   getComplaints,
+  getCommunityComplaints,
   getComplaintById,
   updateComplaintStatus,
   addComment,
-  voteComplaint,
+  likeComplaint,
   getComplaintStats
 } = require('../controllers/complaintController');
 const { protect, authorize } = require('../middleware/authMiddleware');
@@ -54,10 +55,11 @@ router.use(protect);
 // Complaint routes
 router.post('/', upload.array('images', 5), complaintValidation, createComplaint);
 router.get('/', getComplaints);
+router.get('/community/all', getCommunityComplaints);
 router.get('/stats', authorize('admin', 'department'), getComplaintStats);
 router.get('/:id', getComplaintById);
 router.put('/:id/status', authorize('admin', 'department'), updateComplaintStatus);
 router.post('/:id/comments', body('text').notEmpty(), addComment);
-router.post('/:id/vote', body('voteType').isIn(['upvote', 'downvote']), voteComplaint);
+router.post('/:id/like', likeComplaint);
 
 module.exports = router;

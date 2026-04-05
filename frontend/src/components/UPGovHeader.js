@@ -10,7 +10,7 @@ const translations = {
     title: 'बरेली नगर निगम',
     subtitle: 'Bareilly Nagar Nigam Portal',
     dashboard: 'Dashboard',
-    complaints: 'Complaints',
+    community: 'Community',
     newComplaint: 'New Complaint',
     admin: 'Admin',
     logout: 'Logout',
@@ -21,7 +21,7 @@ const translations = {
     title: 'बरेली नगर निगम',
     subtitle: 'Bareilly Nagar Nigam Portal',
     dashboard: 'डैशबोर्ड',
-    complaints: 'शिकायतें',
+    community: 'समुदाय',
     newComplaint: 'नई शिकायत दर्ज करें',
     admin: 'प्रशासन',
     logout: 'लॉगआउट',
@@ -62,8 +62,8 @@ const UPGovHeader = () => {
             <Link to="/dashboard" className="flex items-center space-x-2 px-3 py-2 bg-blue-900/50 rounded-lg hover:bg-blue-700 transition-colors border border-blue-700">
               <FaHome className="text-sm" /><span className="text-sm">{t('dashboard')}</span>
             </Link>
-            <Link to="/complaints" className="flex items-center space-x-2 px-3 py-2 bg-blue-900/50 rounded-lg hover:bg-blue-700 transition-colors border border-blue-700">
-              <FaBuilding className="text-sm" /><span className="text-sm">{t('complaints')}</span>
+            <Link to="/community" className="flex items-center space-x-2 px-3 py-2 bg-blue-900/50 rounded-lg hover:bg-blue-700 transition-colors border border-blue-700">
+              <FaBuilding className="text-sm" /><span className="text-sm">{t('community')}</span>
             </Link>
             {user?.role === 'citizen' && (
               <Link to="/new-complaint" className="flex items-center space-x-2 px-4 py-2 bg-orange-600 rounded-lg hover:bg-orange-700 transition-colors font-bold shadow-lg">
