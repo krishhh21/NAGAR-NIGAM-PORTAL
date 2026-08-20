@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 const translations = {
   en: {
     title: 'Important Notices',
-    subtitle: 'Official notices of Bareilly Nagar Nigam',
+    subtitle: 'Updates for civic issue reports',
     important: 'Important',
     event: 'Event',
     info: 'Info',
@@ -14,28 +14,28 @@ const translations = {
     sms: 'Register for SMS alerts',
     email: 'Subscribe to email notifications',
     whatsapp: 'Join WhatsApp channel',
-    board: 'View Nagar Nigam bulletin board',
+    board: 'View civic updates board',
     contact: 'Contact Information',
-    officer: 'Information Officer: 9876543210',
-    emailContact: 'Email: info@bareilly.up.in',
-    hours: 'Office hours: 10:00 AM to 5:00 PM',
+    officer: 'Support Desk: 9876543210',
+    emailContact: 'Email: info@example.com',
+    hours: 'Support hours: 10:00 AM to 5:00 PM',
     helpline: 'Toll-free helpline: 1800-XXX-XXXX',
     sample1: {
       title: 'Aadhaar Verification Campaign',
       desc: 'All citizens are requested to complete their Aadhaar verification by 31 March 2026.'
     },
     sample2: {
-      title: 'New Nagar Tax Payment Facility',
-      desc: 'You can now pay Nagar Tax online. Visit the official website.'
+      title: 'Streetlight Repair Drive',
+      desc: 'Streetlight repair requests are being prioritized this week.'
     },
     sample3: {
-      title: 'Mayor Public Hearing',
-      desc: 'Mayor public hearing will be held on 15 February 2026 at the Nagar Nigam office.'
+      title: 'Community Review Session',
+      desc: 'A community issue review session will be held on 15 February 2026.'
     }
   },
   hi: {
     title: 'महत्वपूर्ण सूचनाएं',
-    subtitle: 'बरेली नगर निगम की आधिकारिक सूचनाएं',
+    subtitle: 'नागरिक समस्या रिपोर्ट के अपडेट',
     important: 'महत्वपूर्ण',
     event: 'कार्यक्रम',
     info: 'सूचना',
@@ -44,23 +44,23 @@ const translations = {
     sms: 'SMS अलर्ट के लिए रजिस्टर करें',
     email: 'ईमेल नोटिफिकेशन सब्सक्राइब करें',
     whatsapp: 'व्हाट्सएप चैनल ज्वाइन करें',
-    board: 'नगर निगम बुलेटिन बोर्ड देखें',
+    board: 'सिविक अपडेट बोर्ड देखें',
     contact: 'संपर्क जानकारी',
-    officer: 'सूचना अधिकारी: 9876543210',
-    emailContact: 'ईमेल: info@bareilly.up.in',
-    hours: 'कार्यालय समय: सुबह 10:00 से शाम 5:00 तक',
+    officer: 'सपोर्ट डेस्क: 9876543210',
+    emailContact: 'ईमेल: info@example.com',
+    hours: 'सहायता समय: सुबह 10:00 से शाम 5:00 तक',
     helpline: 'नि:शुल्क हेल्पलाइन: 1800-XXX-XXXX',
     sample1: {
       title: 'आधार सत्यापन अभियान',
       desc: 'सभी नागरिकों से अनुरोध है कि वे अपना आधार सत्यापन 31 मार्च 2026 तक पूरा कर लें।'
     },
     sample2: {
-      title: 'नगर कर भुगतान की नई सुविधा',
-      desc: 'अब आप ऑनलाइन नगर कर का भुगतान कर सकते हैं। आधिकारिक वेबसाइट पर जाएं।'
+      title: 'स्ट्रीटलाइट मरम्मत अभियान',
+      desc: 'इस सप्ताह स्ट्रीटलाइट मरम्मत अनुरोधों को प्राथमिकता दी जा रही है।'
     },
     sample3: {
-      title: 'महापौर जन सुनवाई',
-      desc: 'महापौर जन सुनवाई 15 फरवरी 2026 को नगर निगम कार्यालय में आयोजित की जाएगी।'
+      title: 'सामुदायिक समीक्षा सत्र',
+      desc: 'सामुदायिक समस्या समीक्षा सत्र 15 फरवरी 2026 को आयोजित किया जाएगा।'
     }
   }
 };

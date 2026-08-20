@@ -76,7 +76,7 @@ body {
   font-family: 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
 }
 
-/* UP Government specific styles */
+/* Civic reporter specific styles */
 .up-gov-table {
   @apply w-full border-collapse;
 }
@@ -108,7 +108,7 @@ body {
 }
 /* ... keep your @layer components block ... */
 
-/* UP Government specific styles */
+/* Civic reporter specific styles */
 .up-gov-table {
   @apply w-full border-collapse overflow-hidden rounded-lg;
 }
@@ -142,7 +142,7 @@ body {
 @layer components {
   /* ... your existing btn-primary, input-field classes ... */
 
-  /* UP Government specific styles */
+  /* Civic reporter specific styles */
   .up-gov-table {
     @apply w-full border-collapse;
   }
@@ -155,7 +155,7 @@ body {
     @apply border p-3;
   }
 
-  /* UP Government Button styles */
+  /* Civic reporter button styles */
   .btn-up-gov {
     @apply bg-up-gov-blue hover:bg-up-gov-dark-blue text-white font-bold py-2 px-4 rounded transition-colors;
   }

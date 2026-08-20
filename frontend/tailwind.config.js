@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Defining the UP Government brand palette
+        // Defining the civic reporter palette
         'up-gov-blue': '#1E40AF',
         'up-gov-dark-blue': '#1E3A8A',
         'up-gov-light-blue': '#DBEAFE',
