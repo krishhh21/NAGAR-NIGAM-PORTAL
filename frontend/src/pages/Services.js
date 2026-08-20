@@ -14,8 +14,8 @@ import { useLanguage } from '../context/LanguageContext';
 
 const translations = {
   en: {
-    title: 'Municipal Services',
-    subtitle: 'All online services of Bareilly Nagar Nigam',
+    title: 'Civic Services',
+    subtitle: 'Track pothole, garbage and streetlight issues online',
     available: '24x7 Available',
     online: 'Online Services',
     total: 'Total Services',
@@ -35,23 +35,23 @@ const translations = {
     support: 'Need Help?',
     supportDesc: 'Our support team is ready to assist you',
     helpline: 'Helpline: 1800-XXX-XXXX',
-    emailSupport: 'Email: support@bareilly.up.in',
+    emailSupport: 'Email: support@example.com',
     items: [
-      { name: 'Municipal Tax Payment', desc: 'Pay municipal tax online' },
-      { name: 'Water Bill Payment', desc: 'Pay water department bill' },
-      { name: 'Electricity Bill', desc: 'Pay electricity bill' },
-      { name: 'Garbage Fee', desc: 'Pay sanitation fee' },
-      { name: 'Road Tax', desc: 'Pay road tax' },
-      { name: 'Property Registration', desc: 'Property registration service' },
-      { name: 'Birth Certificate', desc: 'Online birth certificate' },
-      { name: 'Death Certificate', desc: 'Online death certificate' },
-      { name: 'School Admission', desc: 'Municipal school admission' },
-      { name: 'Parking Permit', desc: 'Apply for parking permit' }
+      { name: 'Pothole Report', desc: 'Report damaged roads and potholes' },
+      { name: 'Garbage Pickup', desc: 'Report missed garbage collection' },
+      { name: 'Streetlight Issue', desc: 'Report broken or unsafe streetlights' },
+      { name: 'Drainage Issue', desc: 'Report blocked drains or waterlogging' },
+      { name: 'Road Hazard', desc: 'Report unsafe road conditions' },
+      { name: 'Public Space Issue', desc: 'Report problems in shared spaces' },
+      { name: 'Issue Status', desc: 'Track your submitted reports' },
+      { name: 'Community Updates', desc: 'View nearby civic issue updates' },
+      { name: 'School Zone Issue', desc: 'Report issues near school areas' },
+      { name: 'Parking Issue', desc: 'Report blocked or unsafe parking areas' }
     ]
   },
   hi: {
-    title: 'नगर निगम सेवाएं',
-    subtitle: 'बरेली नगर निगम की सभी ऑनलाइन सेवाएं',
+    title: 'सिविक सेवाएं',
+    subtitle: 'गड्ढा, कचरा और स्ट्रीटलाइट समस्याओं को ऑनलाइन ट्रैक करें',
     available: '24x7 उपलब्ध',
     online: 'ऑनलाइन सेवाएं',
     total: 'कुल सेवाएं',
@@ -71,18 +71,18 @@ const translations = {
     support: 'सहायता चाहिए?',
     supportDesc: 'हमारी सहायता टीम आपकी मदद के लिए तैयार है',
     helpline: 'हेल्पलाइन: 1800-XXX-XXXX',
-    emailSupport: 'ईमेल: support@bareilly.up.in',
+    emailSupport: 'ईमेल: support@example.com',
     items: [
-      { name: 'नगर कर भुगतान', desc: 'ऑनलाइन नगर कर का भुगतान करें' },
-      { name: 'जल बिल भुगतान', desc: 'जल विभाग बिल भुगतान' },
-      { name: 'बिजली बिल', desc: 'बिजली विभाग बिल भुगतान' },
-      { name: 'कचरा शुल्क', desc: 'स्वच्छता शुल्क भुगतान' },
-      { name: 'सड़क टैक्स', desc: 'सड़क कर का भुगतान' },
-      { name: 'संपत्ति पंजीकरण', desc: 'संपत्ति पंजीकरण सेवा' },
-      { name: 'जन्म प्रमाण पत्र', desc: 'ऑनलाइन जन्म प्रमाण पत्र' },
-      { name: 'मृत्यु प्रमाण पत्र', desc: 'ऑनलाइन मृत्यु प्रमाण पत्र' },
-      { name: 'विद्यालय प्रवेश', desc: 'नगर निगम विद्यालय प्रवेश' },
-      { name: 'पार्किंग परमिट', desc: 'पार्किंग परमिट आवेदन' }
+      { name: 'गड्ढा रिपोर्ट', desc: 'क्षतिग्रस्त सड़क और गड्ढे रिपोर्ट करें' },
+      { name: 'कचरा उठान', desc: 'छूटा हुआ कचरा संग्रह रिपोर्ट करें' },
+      { name: 'स्ट्रीटलाइट समस्या', desc: 'खराब या असुरक्षित स्ट्रीटलाइट रिपोर्ट करें' },
+      { name: 'जल निकासी समस्या', desc: 'बंद नाली या जलभराव रिपोर्ट करें' },
+      { name: 'सड़क खतरा', desc: 'असुरक्षित सड़क स्थिति रिपोर्ट करें' },
+      { name: 'सार्वजनिक स्थान समस्या', desc: 'साझा स्थानों की समस्या रिपोर्ट करें' },
+      { name: 'समस्या स्थिति', desc: 'अपनी सबमिट की गई रिपोर्ट ट्रैक करें' },
+      { name: 'सामुदायिक अपडेट', desc: 'आस-पास की सिविक समस्या अपडेट देखें' },
+      { name: 'स्कूल क्षेत्र समस्या', desc: 'स्कूल क्षेत्र से जुड़ी समस्या रिपोर्ट करें' },
+      { name: 'पार्किंग समस्या', desc: 'ब्लॉक या असुरक्षित पार्किंग क्षेत्र रिपोर्ट करें' }
     ]
   }
 };
@@ -212,7 +212,7 @@ const Services = () => {
             <a href="tel:1800XXXXXX" className="bg-white text-up-gov-blue px-6 py-3 rounded-lg font-bold hover:bg-gray-100">
               {t('helpline')}
             </a>
-            <a href="mailto:support@bareilly.up.in" className="bg-white text-up-gov-blue px-6 py-3 rounded-lg font-bold hover:bg-gray-100">
+            <a href="mailto:support@example.com" className="bg-white text-up-gov-blue px-6 py-3 rounded-lg font-bold hover:bg-gray-100">
               {t('emailSupport')}
             </a>
           </div>

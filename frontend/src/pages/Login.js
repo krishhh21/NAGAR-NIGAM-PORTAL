@@ -6,8 +6,8 @@ import { useLanguage } from '../context/LanguageContext';
 
 const translations = {
   en: {
-    title: 'Bareilly Nagar Nigam Portal',
-    subtitle: 'Bareilly Nagar Nigam Citizen Portal',
+    title: 'Civic Issue Reporter',
+    subtitle: 'Pothole, Garbage & Streetlight Tracker',
     header: 'Login',
     prompt: 'Enter your account',
     selectRole: 'Select login type:',
@@ -15,7 +15,7 @@ const translations = {
     department: 'Department',
     admin: 'Admin',
     email: 'Email address',
-    emailPlaceholder: 'user@bareilly.up.in',
+    emailPlaceholder: 'user@example.com',
     password: 'Password',
     passwordPlaceholder: '••••••••',
     remember: 'Remember me',
@@ -31,8 +31,8 @@ const translations = {
     forgotComingSoon: 'Password reset coming soon!'
   },
   hi: {
-    title: 'बरेली नगर निगम पोर्टल',
-    subtitle: 'Bareilly Nagar Nigam Citizen Portal',
+    title: 'सिविक इश्यू रिपोर्टर',
+    subtitle: 'गड्ढा, कचरा और स्ट्रीटलाइट ट्रैकर',
     header: 'लॉगिन करें',
     prompt: 'अपने खाते में प्रवेश करें',
     selectRole: 'लॉगिन प्रकार चुनें:',
@@ -40,7 +40,7 @@ const translations = {
     department: 'विभाग',
     admin: 'प्रशासन',
     email: 'ईमेल पता',
-    emailPlaceholder: 'user@bareilly.up.in',
+    emailPlaceholder: 'user@example.com',
     password: 'पासवर्ड',
     passwordPlaceholder: '••••••••',
     remember: 'याद रखें',
@@ -106,9 +106,9 @@ const Login = () => {
     setActiveRole(role);
     let sampleEmail = '';
     switch(role) {
-      case 'citizen': sampleEmail = 'citizen@bareilly.up.in'; break;
-      case 'department': sampleEmail = 'dept@bareilly.up.in'; break;
-      case 'admin': sampleEmail = 'admin@bareilly.up.in'; break;
+      case 'citizen': sampleEmail = 'citizen@example.com'; break;
+      case 'department': sampleEmail = 'team@example.com'; break;
+      case 'admin': sampleEmail = 'admin@example.com'; break;
       default: break;
     }
     setFormData({ email: sampleEmail, password: '' });
@@ -117,7 +117,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full">
-        {/* Government Banner */}
+        {/* Product Banner */}
         <div className="bg-blue-800 text-white rounded-t-xl p-6 text-center mb-6">
           <h1 className="text-2xl font-bold">{t('title')}</h1>
           <p className="text-blue-200">{t('subtitle')}</p>

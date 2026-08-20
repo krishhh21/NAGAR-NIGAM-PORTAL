@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Civic Reporter",
+  "name": "Civic Issue Reporter",
   "icons": [
     {
       "src": "favicon.ico",
